@@ -2,27 +2,34 @@ import matplotlib.pyplot as plt
 import sys
 import numpy as np
 
-max = int(sys.argv[2]) + int(sys.argv[3])
-step = int(sys.argv[3])
-markers = ["+", "x", "P", "X"]
+if len(sys.argv) < 3:
+    print("Usage: python3 plot.py [type] [separate]")
+    print("\nPass type as 'Element-to-Element-Comparisons-Only' or 'Including-Loop-Comparisons'")
+    print("Pass separate as 0 to plot both graphs in the same figure or any other integer to plot them in two different figures")
+    exit()
+else:
+    data = sys.argv[1]
+    separate = int(sys.argv[2])
 
-data1 = np.genfromtxt("Analytics/MergeSort/" + sys.argv[1] + "/Timing.csv", delimiter=",", names=["x", "y"])
-data2 = np.genfromtxt("Analytics/QuickSort/" + sys.argv[1] + "/Timing.csv", delimiter=",", names=["x", "y"])
-data3 = np.genfromtxt("Analytics/SelectionSort/" + sys.argv[1] + "/Timing.csv", delimiter=",", names=["x", "y"])
-data4 = np.genfromtxt("Analytics/BubbleSort/" + sys.argv[1] + "/Timing.csv", delimiter=",", names=["x", "y"])
+markers = ["P", "x", "P", "x"]
+algorithms = ["MergeSort", "QuickSort", "SelectionSort", "BubbleSort"]
 
-comp1 = np.genfromtxt("Analytics/MergeSort/" + sys.argv[1] + "/Comparisons.csv", delimiter=",", names=["x", "y"])
-comp2 = np.genfromtxt("Analytics/QuickSort/" + sys.argv[1] + "/Comparisons.csv", delimiter=",", names=["x", "y"])
-comp3 = np.genfromtxt("Analytics/SelectionSort/" + sys.argv[1] + "/Comparisons.csv", delimiter=",", names=["x", "y"])
-comp4 = np.genfromtxt("Analytics/BubbleSort/" + sys.argv[1] + "/Comparisons.csv", delimiter=",", names=["x", "y"])
+if(separate):
+    fig1, ax1 = plt.subplots(1)
+    fig2, ax2 = plt.subplots(1)
+else:
+    fig, (ax1, ax2) = plt.subplots(2)
 
-fig, (ax1, ax2) = plt.subplots(2)
+for i in range(4):
+    timing = np.genfromtxt("Analytics/" + algorithms[i] + "/" + data + "/Timing.csv", delimiter=",", names=["x", "y"])[1::]
+    comparisons = np.genfromtxt("Analytics/" + algorithms[i] + "/" + data + "/Comparisons.csv", delimiter=",", names=["x", "y"])[1::]
+    ax1.plot(timing['x'], timing['y'], marker = markers[i])
+    ax2.plot(comparisons['x'], comparisons['y'], marker = markers[i])
 
-ax1.plot(data1['x'], data1['y'], marker = markers[0])
-ax1.plot(data2['x'], data2['y'], marker = markers[1])
-ax1.plot(data3['x'], data3['y'], marker = markers[2])
-ax1.plot(data4['x'], data4['y'], marker = markers[3])
-ax1.legend(["Merge Sort", "Quick Sort", "Selection Sort", "Bubble Sort"])
+max = int(timing['x'].max() + timing['x'].min())
+step = int(timing['x'].min())//2
+
+ax1.legend(algorithms)
 ax1.set(
     xlabel="Input array size", ylabel="Time taken in seconds", 
     xticks=range(0, max, step),
@@ -30,11 +37,7 @@ ax1.set(
     )
 ax1.grid(True)
 
-ax2.plot(comp1['x'], comp1['y'], marker = markers[0])
-ax2.plot(comp2['x'], comp2['y'], marker = markers[1])
-ax2.plot(comp3['x'], comp3['y'], marker = markers[2])
-ax2.plot(comp4['x'], comp4['y'], marker = markers[3])
-ax2.legend(["Merge Sort", "Quick Sort", "Selection Sort", "Bubble Sort"])
+ax2.legend(algorithms)
 ax2.set(
     xlabel="Input array size", ylabel="Number of comparisons", 
     xticks=range(0, max, step),

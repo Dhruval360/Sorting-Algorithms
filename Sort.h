@@ -1,6 +1,6 @@
 // This file contains all the function prototypes
 #include <stdio.h>
-//#define loop // This enables counting of loop condition comparisons as well
+//#define loop // Uncomment to enable counting of loop condition comparisons as well
 
 // Quick sort
 int partition(int a[], int low, int high, unsigned long *comparisons);

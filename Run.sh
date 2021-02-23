@@ -8,5 +8,5 @@ echo
 ./a.out
 echo
 echo "Graphing out the results....."
-echo 'python3 plot.py "Element-to-Element-Comparisons-Only" 1000000 50000'
-python3 plot.py "Element-to-Element-Comparisons-Only" 1000000 50000
+echo 'python3 plot.py "Element-to-Element-Comparisons-Only" 0'
+python3 plot.py "Element-to-Element-Comparisons-Only" 0
