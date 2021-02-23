@@ -20,7 +20,7 @@ if(separate):
 else:
     fig, (ax1, ax2) = plt.subplots(2)
 
-for i in range(4):
+for i in range(len(algorithms)):
     timing = np.genfromtxt("Analytics/" + algorithms[i] + "/" + data + "/Timing.csv", delimiter=",", names=["x", "y"])[1::]
     comparisons = np.genfromtxt("Analytics/" + algorithms[i] + "/" + data + "/Comparisons.csv", delimiter=",", names=["x", "y"])[1::]
     ax1.plot(timing['x'], timing['y'], marker = markers[i])
