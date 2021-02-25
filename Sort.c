@@ -130,7 +130,7 @@ void selectionSort(int array[], unsigned int n, unsigned long *comparisons){
 }
 
 ////////////////////////////////////////////////////////////////// Bubble sort /////////////////////////////////////////////////////////////////////////////////////
-void bubbleSort(int array[], unsigned int n, unsigned long *comparisons){
+void bubbleSort(int array[], unsigned int n, unsigned long *comparisons){ // This is a slighlty optimized version of the bubble sort algorithm
     for(unsigned int i = 0; i < n-1; i++){ // Bubble sort needs to iterate through an 'n' element array a maximum of 'n-1' times as at the end of each iteration, 1 element will be at its correct position
         unsigned sorted = 1; // Assuming the array has been sorted
         for(unsigned int j = 0; j < n-1-i; j++){ // The last element is in its right place
@@ -145,10 +145,10 @@ void bubbleSort(int array[], unsigned int n, unsigned long *comparisons){
             #endif
             *comparisons += 1;   // One element to element comparison (jth element and (j+1)th element)
         }
-        if(sorted) break; // If no swap occurs, the array has been sorted
         #ifdef loop
         *comparisons += 3; // One comparison in the loop's condition, one in the if condition and the other at the inner for loop's exit
         #endif
+        if(sorted) break; // If no swap occurs, the array has been sorted
     }
     #ifdef loop
     *comparisons += 1;   // One comparison in the loop's condition at exit

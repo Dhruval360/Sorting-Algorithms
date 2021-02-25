@@ -33,7 +33,7 @@ ax1.legend(algorithms)
 ax1.set(
     xlabel="Input array size", ylabel="Time taken in seconds", 
     xticks=range(0, max, step),
-    title="Comparison of time taken by various sorting algorithms"
+    title="Comparison of time taken by various sorting algorithms versus input array size"
     )
 ax1.grid(True)
 
@@ -41,7 +41,7 @@ ax2.legend(algorithms)
 ax2.set(
     xlabel="Input array size", ylabel="Number of comparisons", 
     xticks=range(0, max, step),
-    title="Number of comparisons required by various sorting algorithms"
+    title="Number of comparisons required by various sorting algorithms versus input array size"
     )
 ax2.grid(True)
 plt.show()
