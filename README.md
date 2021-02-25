@@ -8,9 +8,9 @@ This is a comparison of the performance of some of the most popular sorting algo
 ## Files
 1. *Sort.h* contains the function prototypes
 2. *Sort.c* contains the function definitions
-3. *Driver.c* contains the main funciton that is used to benchmark the aforementioned sorting algorithms
+3. *Driver.c* contains the main function that is used to benchmark the aforementioned sorting algorithms
 4. *Run.sh* is a shell script used to compile and run the benchmark as well as plot a graph of the observations
-5. *Plot.py* is python script that graphs the observations using **matplotib.pyplot** and **numpy**
+5. *Plot.py* is a python script that graphs the observations using **matplotib.pyplot** and **numpy**
 
 ## Output Directory Structure
 The Analytics Folder contains the output graphs as well as four subfolders (one for each sorting algorithm). These folders inturn have two more subfolders:
@@ -28,13 +28,13 @@ The following graph is obtained when the algorithms are run for various input si
 
 ## Compiling and Running the Benchmark
 
-Clone the repository:
+Clone the repository using:
 
 ```bash
 $ git clone https://github.com/Dhruval360/Sorting-Algorithms.git
 ```
 
-Execute the `Run.sh` script:
+Execute the `Run.sh` script using:
 
 ```bash
 $ chmod +x Run.sh
